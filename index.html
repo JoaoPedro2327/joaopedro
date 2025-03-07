@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Jogo de Matemática</title>
+    <style>
+        #question { font-size: 24px; }
+        .feedback { font-size: 18px; }
+        .correct { color: green; }
+        .incorrect { color: red; }
+        .hidden { display: none; }
+    </style>
+</head>
+<body>
+    <div id="game">
+        <div id="question"></div>
+        <input type="text" id="answer">
+        <button onclick="checkAnswer()">Responder</button>
+        <div class="feedback hidden" id="correct">Correto!</div>
+        <div class="feedback hidden" id="incorrect">Errado!</div>
+        <div id="score">Pontuação: 0</div>
+        <div id="timer">Tempo: 10</div>
+    </div>
+    <script>
+        let score = 0;
+        let timer;
+        let timeLeft = 10;
+
+        function generateQuestion() {
+            const operations = ['+', '-', '*'];
+            const operation = operations[Math.floor(Math.random() * operations.length)];
+            let num1 = Math.floor(Math.random() * 10) + 1;
+            let num2 = Math.floor(Math.random() * 10) + 1;
+            if (operation === '*') {
+                num1 = Math.floor(Math.random() * 5) + 1;
+                num2 = Math.floor(Math.random() * 5) + 1;
+            }
+            const question = `${num1} ${operation} ${num2}`;
+            document.getElementById('question').textContent = question;
+            return eval(question);
+        }
+
+        let correctAnswer = generateQuestion();
+
+        function checkAnswer() {
+            const answer = parseInt(document.getElementById('answer').value);
+            if (answer === correctAnswer) {
+                document.getElementById('correct').classList.remove('hidden');
+                document.getElementById('incorrect').classList.add('hidden');
+                score++;
+                timeLeft = Math.max(3, timeLeft - 1);
+            } else {
+                document.getElementById('incorrect').classList.remove('hidden');
+                document.getElementById('correct').classList.add('hidden');
+            }
+            document.getElementById('score').textContent = `Pontuação: ${score}`;
+            correctAnswer = generateQuestion();
+            resetTimer();
+        }
+
+        function resetTimer() {
+            clearInterval(timer);
+            timeLeft = 10;
+            document.getElementById('timer').textContent = `Tempo: ${timeLeft}`;
+            timer = setInterval(function() {
+                timeLeft--;
+                document.getElementById('timer').textContent = `Tempo: ${timeLeft}`;
+                if (timeLeft === 0) {
+                    clearInterval(timer);
+                    checkAnswer();
+                }
+            }, 1000);
+        }
+
+        resetTimer();
+    </script>
+</body>
+</html>
