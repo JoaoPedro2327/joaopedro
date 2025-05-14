@@ -1,0 +1,20 @@
+let x = 10; // Atribuição básica
+console.log("Valor inicial de x:", x);
+
+x += 5; // x = x + 5 (agora x vale 15)
+console.log("Após x += 5:", x);
+
+x -= 3; // x = x - 3 (agora x vale 12)
+console.log("Após x -= 3:", x);
+
+x *= 2; // x = x * 2 (agora x vale 24)
+console.log("Após x *= 2:", x);
+
+x /= 4; // x = x / 4 (agora x vale 6)
+console.log("Após x /= 4:", x);
+
+x %= 5; // x = x % 5 (agora x vale 1)
+console.log("Após x %= 5:", x);
+
+x **= 3; // x = x ** 3 (x elevado a 3, agora vale 1)
+console.log("Após x **= 3:", x);
