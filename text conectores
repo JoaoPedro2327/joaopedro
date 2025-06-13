@@ -1,0 +1,6 @@
+if preco <= 100:
+    print("Baixo custo")
+elif preco <= 500:
+    print("Médio custo")
+else:
+    print("Alto custo")
