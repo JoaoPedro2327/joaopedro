@@ -1,0 +1,44 @@
+# ===============================
+# 🗂️ arquivo: tabela-precos.py
+# ===============================
+
+lojas = ["Loja A", "Loja B", "Loja C"]
+precos = [
+    [10.50, 12.30, 9.90],
+    [8.40, 7.20, 6.50],
+    [14.00, 13.50, 15.00]
+]
+
+for i in range(len(lojas)):
+    print(f"\n{lojas[i]}:")
+    for preco in precos[i]:
+        print(f"R$ {preco:.2f}")
+
+# ===============================
+# 🗂️ arquivo: jogo-da-velha.py
+# ===============================
+
+def exibir_tabuleiro(tabuleiro):
+    for linha in tabuleiro:
+        print(" | ".join(linha))
+        print("-" * 5)
+
+def verificar_vitoria(tabuleiro, jogador):
+    for i in range(3):
+        if all(tabuleiro[i][j] == jogador for j in range(3)):
+            return True
+        if all(tabuleiro[j][i] == jogador for j in range(3)):
+            return True
+    if all(tabuleiro[i][i] == jogador for i in range(3)):
+        return True
+    if all(tabuleiro[i][2 - i] == jogador for i in range(3)):
+        return True
+    return False
+
+def jogo_da_velha():
+    tabuleiro = [[" " for _ in range(3)] for _ in range(3)]
+    jogador = "X"
+    jogadas = 0
+
+    while jogadas < 9:
+        exi
